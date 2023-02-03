@@ -7,93 +7,97 @@
     tools:context=".view.fragments.InitFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gray">
+        android:background="@color/gray"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="50dp"
-            android:layout_marginHorizontal="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="25dp"
+            android:layout_weight="4"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
-                style="@style/testText"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:text="W E L C O M E    T O"
-                android:textSize="30sp" />
+                android:textColor="@color/white"
+                android:textSize="33sp"
+                android:textStyle="bold" />
 
             <TextView
-                style="@style/testText"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:text="C R Y P T O    W A L L E T !"
-                android:textSize="30sp" />
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="15dp" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
                 android:text="If you are creating a new wallet press the GENERATE button, take note of the memoric pharase, it should be stored in the safe place  "
                 android:textColor="@color/grayLight"
                 android:textSize="18sp" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="100dp" />
-
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="If you are creating a new wallet press the GENERATE button, take note of the memoric pharase, it should be stored in the safe place  "
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="imply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                android:textAlignment="center"
                 android:textColor="@color/whiteLight"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
+
 
         </LinearLayout>
 
 
         <LinearLayout
             android:id="@+id/linearLayout2"
-            android:paddingBottom="70dp"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="25dp"
+            android:layout_weight="5"
+            android:orientation="vertical">
+
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:backgroundTint="@color/grayLightButton"
+                android:text="GENERATE NEW WALLET"
+                app:cornerRadius="10dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_marginTop="10dp"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="QR CAPTURE"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
 
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="GENERATE NEW WALLET" />
+                android:layout_height="60dp"
+                android:layout_marginTop="90dp"
+                android:background="@drawable/gradient"
+                android:text="ACCESS WALLET"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="QR CAPTURE" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="100dp" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="QR CAPTURE" />
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </FrameLayout>

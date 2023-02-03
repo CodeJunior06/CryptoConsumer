@@ -11,5 +11,6 @@
     <color name="yellowSplash">#E3CB30</color>
     <color name="gray">#252526</color>
     <color name="grayLight">#6B6B75</color>
+    <color name="grayLightButton">#3F3F4A</color>
     <color name="whiteLight">#DFD8D8</color>
 </resources>
