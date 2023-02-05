@@ -2,11 +2,17 @@ package com.codejunior.cryptoconsumer.view.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.system.Os
 import com.codejunior.cryptoconsumer.R
+import com.codejunior.cryptoconsumer.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private var bindingMain:ActivityMainBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        bindingMain = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(bindingMain!!.root)
     }
 }

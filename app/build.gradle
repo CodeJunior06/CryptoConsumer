@@ -5,6 +5,8 @@ plugins {
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-android'
+    id 'kotlinx-serialization'
+
 }
 
 android {
@@ -56,6 +58,7 @@ dependencies {
     def lifecycle_version = "2.5.1"
 
     // ViewModel
+    implementation"androidx.activity:activity-ktx:1.6.1"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
@@ -82,6 +85,21 @@ dependencies {
 
     //Corutinas
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1'
+
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
+    //Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    //Room
+    implementation("androidx.room:room-runtime:2.4.3")
+    annotationProcessor("androidx.room:room-compiler:2.4.3")
+
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+
 
 
 }

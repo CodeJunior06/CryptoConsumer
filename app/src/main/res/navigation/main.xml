@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    app:startDestination="@id/cryptoFragment">
+
+    <fragment
+        android:id="@+id/cryptoFragment"
+        android:name="com.codejunior.cryptoconsumer.view.fragments.CryptoFragment"
+        android:label="fragment_crypto"
+        tools:layout="@layout/fragment_crypto" >
+        <action
+            android:id="@+id/action_cryptoFragment_to_informationFragment"
+            app:destination="@id/informationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/informationFragment"
+        android:name="com.codejunior.cryptoconsumer.view.fragments.InformationFragment"
+        android:label="fragment_information"
+        tools:layout="@layout/fragment_information" />
 
 </navigation>

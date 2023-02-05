@@ -1,6 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="15dp"
+    style ="?attr/backgroundColor"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+     <LinearLayout
+         android:layout_marginTop="30dp"
+         android:layout_width="match_parent"
+         android:layout_height="80dp"
+         >
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="20dp"
+            app:cardBackgroundColor="@color/grayLightButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:orientation="horizontal"
+             android:baselineAligned="false"
+             android:layout_gravity="bottom"
+             android:layout_marginBottom="10dp"
+             >
+             <LinearLayout
+                 android:layout_marginStart="25dp"
+                 android:layout_weight="5"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center_vertical"
+                 android:orientation="vertical">
+
+                 <TextView
+                     android:id="@+id/nameCrypto"
+                     android:textSize="18sp"
+                     android:textStyle="bold"
+                     android:textColor="@color/white"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+
+                     android:text="Bitcoin"
+                     />
+
+                 <TextView
+                     android:textColor="@color/grayLight"
+                     android:id="@+id/symbolCrypto"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:text="BTC"/>
+             </LinearLayout>
+
+             <LinearLayout
+
+                 android:layout_marginEnd="30dp"
+                 android:layout_weight="5"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="vertical"
+
+                 >
+
+                 <TextView
+                     android:textSize="23sp"
+                     android:textStyle="bold"
+                     android:textColor="@color/white"
+                     android:textAlignment="viewEnd"
+                     android:id="@+id/porcentageCrypto"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:text="$ 19,881.10"/>
+
+                 <TextView
+
+                     android:textSize="15sp"
+                     android:textColor="@color/red"
+                     android:id="@+id/valueCrypto"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:text="- 1,97%"
+                     android:textAlignment="viewEnd" />
+
+
+             </LinearLayout>
+
+
+         </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+     </LinearLayout>
+    <ImageView
+        android:layout_marginStart="18dp"
+        android:layout_width="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_height="30dp"
+        android:background="@drawable/bit"
+        tools:ignore="ContentDescription" />
+    </RelativeLayout>

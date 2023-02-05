@@ -23,7 +23,7 @@ class CryptoAdapter(private val arrayCryptoConsumer:List<String>) : RecyclerView
         return  CryptoHolder(binding.root)
     }
 
-    override fun getItemCount(): Int = arrayCryptoConsumer.size
+    override fun getItemCount(): Int = 1
 
 
 
