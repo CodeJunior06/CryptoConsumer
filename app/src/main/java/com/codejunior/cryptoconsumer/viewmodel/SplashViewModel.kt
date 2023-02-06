@@ -5,11 +5,11 @@ import androidx.lifecycle.viewModelScope
 import com.codejunior.cryptoconsumer.model.SplashModel
 import com.codejunior.cryptoconsumer.utils.Defines
 import com.codejunior.cryptoconsumer.utils.ResponseSealed
+import com.codejunior.cryptoconsumer.utils.SealedBase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,19 +24,26 @@ class SplashViewModel @Inject constructor(private val splashModel: SplashModel) 
     private val _navigation = MutableStateFlow(false)
     val navigation: StateFlow<Boolean> = _navigation
 
+
     fun invoke() {
-        viewModelScope.launch {
-            recursive(*splashModel.isConnectionAndVerifiedRoom(true))
+       viewModelScope.launch {
+          recursive(*splashModel.isConnectionAndVerifiedRoom(true))
+      }
+    }
+
+    fun newInvoke(){
+        viewModelScope.async(Dispatchers.Main) {
+            recursive2(splashModel.isConnectionAndVerifiedRoom2(isSplash = true))
         }
     }
 
-    private suspend fun recursive(vararg responseSealedVarArgs: ResponseSealed) {
+    private suspend  fun  recursive(vararg responseSealedVarArgs: ResponseSealed)  {
 
         for (responseSealed in responseSealedVarArgs) {
+
             when (responseSealed) {
                 is ResponseSealed.MessageDialog -> {
-                    _messageDialogNotInternet.emit(responseSealed.message)
-                    return
+                        _messageDialogNotInternet.emit(responseSealed.message)
                 }
                 is ResponseSealed.ChangeMessageBackground -> {
                     _messageSuccess.emit(responseSealed.message)
@@ -49,8 +56,19 @@ class SplashViewModel @Inject constructor(private val splashModel: SplashModel) 
                     delay(1500)
                     _navigation.emit(true)
                 }
-                else -> println(responseSealed.toString())
+                else -> println("NOS SALIMOS")
             }
         }
     }
+
+    private suspend  fun  recursive2( responseSealedVarArgs: ResponseSealed) :String {
+
+            return when (responseSealedVarArgs) {
+
+                is SealedBase.FirstPetition -> responseSealedVarArgs.messageBackground
+
+                else -> TODO()
+            }
+        }
+
 }

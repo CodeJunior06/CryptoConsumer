@@ -13,19 +13,20 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class InitFragment : Fragment() {
 
-    private lateinit var bindingInit:FragmentInitBinding;
+    private var _bindingInit:FragmentInitBinding? = null;
+     private val binding  get() = _bindingInit
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        bindingInit = FragmentInitBinding.inflate(inflater,container,false)
-        return bindingInit.root
+        _bindingInit = FragmentInitBinding.inflate(inflater,container,false)
+        return binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        bindingInit.btnSuccess.setOnClickListener {
+        binding!!.btnSuccess.setOnClickListener {
 
             Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_splash).navigate(InitFragmentDirections.actionInitFragmentToMain())
         }

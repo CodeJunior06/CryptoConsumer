@@ -6,7 +6,7 @@ plugins {
     id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-android'
     id 'kotlinx-serialization'
-
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -37,10 +37,6 @@ android {
     }
 
     viewBinding {
-        enabled = true
-    }
-
-    dataBinding {
         enabled = true
     }
 }

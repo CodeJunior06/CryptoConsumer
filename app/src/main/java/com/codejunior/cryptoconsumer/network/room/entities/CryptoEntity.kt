@@ -1,5 +1,6 @@
 package com.codejunior.cryptoconsumer.network.room.entities
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -7,8 +8,10 @@ import com.codejunior.cryptoconsumer.network.retrofit.model.data.Crypto
 import com.codejunior.cryptoconsumer.network.retrofit.model.data.ResponseCrypto
 import com.codejunior.cryptoconsumer.network.retrofit.model.information.Datum
 import com.codejunior.cryptoconsumer.network.retrofit.model.information.ResponseDescription
+import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "crypto")
+@Parcelize
 data class CryptoEntity (
 
     @PrimaryKey(autoGenerate = false) @ColumnInfo(name = "crypto_id") val id: Long,
@@ -34,4 +37,4 @@ data class CryptoEntity (
     @ColumnInfo(name = "crypto_logo_base64") val logoBase64: String?,
     @ColumnInfo(name = "crypto_webSite") val webSite: String?,
     @ColumnInfo(name = "crypto_number_contract") val numberContract: Int,
-    )
+    ) :Parcelable

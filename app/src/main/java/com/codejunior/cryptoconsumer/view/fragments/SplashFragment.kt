@@ -9,12 +9,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.codejunior.cryptoconsumer.databinding.FragmentSplashBinding
-import com.codejunior.cryptoconsumer.view.dialog.DialogFragment
 import com.codejunior.cryptoconsumer.viewmodel.SplashViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SplashFragment : Fragment() ,DialogFragment.OnCallback {
+class SplashFragment : Fragment() {
 
     private lateinit var binding: FragmentSplashBinding
     private val _viewModelSplash: SplashViewModel by activityViewModels { defaultViewModelProviderFactory }
@@ -29,44 +28,55 @@ class SplashFragment : Fragment() ,DialogFragment.OnCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        _viewModelSplash.invoke()
-
         observerMessage()
+        observable()
+        init()
 
     }
 
+    private fun init() = _viewModelSplash.invoke()
+
+
+    private fun observable() {
+        findNavController().currentBackStackEntry!!.savedStateHandle.getLiveData<Boolean>("retry")
+            .observe(viewLifecycleOwner) {
+                if (it) {
+                    init()
+                }
+            }
+    }
+
     private fun observerMessage() {
-        lifecycleScope.launchWhenCreated {
+        lifecycleScope.launchWhenResumed {
 
             _viewModelSplash.messageStateDialog.collect {
-                if(it.isNotEmpty()){
-                val args = Bundle()
-                args.putString("title",it)
-                DialogFragment(this@SplashFragment).apply { arguments = args}.show(requireActivity().supportFragmentManager,"")
+                if (it.isNotEmpty()) {
+                    findNavController().navigate(
+                        SplashFragmentDirections.actionSplashFragmentToDialogFragment(
+                            it
+                        )
+                    )
                 }
             }
         }
 
-        lifecycleScope.launchWhenCreated {
+        lifecycleScope.launchWhenResumed {
             _viewModelSplash.messageStateSuccess.collect {
                 binding.textView.text = it
             }
         }
 
 
-        lifecycleScope.launchWhenCreated {
+        lifecycleScope.launchWhenResumed {
             _viewModelSplash.navigation.collect {
-                if(it) findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToInitFragment())
+                if (it) findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToInitFragment())
             }
         }
 
     }
 
-    override fun onRetry() {
-        _viewModelSplash.invoke()
-    }
-
-    override fun exitApp() {
-        requireActivity().finish()
+    override fun onDestroy() {
+        super.onDestroy()
+        print("Splash Destroy")
     }
 }

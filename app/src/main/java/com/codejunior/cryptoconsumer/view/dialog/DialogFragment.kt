@@ -6,21 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.codejunior.cryptoconsumer.R
 import com.codejunior.cryptoconsumer.databinding.FragmentDialogBinding
+import com.codejunior.cryptoconsumer.view.fragments.SplashFragmentDirections
+import javax.inject.Singleton
 
-class DialogFragment(private val onCallback:OnCallback) : androidx.fragment.app.DialogFragment() {
+class DialogFragment() : androidx.fragment.app.DialogFragment() {
     private lateinit var  bindingDialog:FragmentDialogBinding
-     interface OnCallback{
-        fun onRetry()
-        fun exitApp()
-    }
+    private val args: DialogFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        bindingDialog = FragmentDialogBinding.inflate(layoutInflater)
+        bindingDialog = FragmentDialogBinding.inflate(inflater,container,false)
 
         if (dialog != null && dialog!!.window != null) {
             dialog!!.window!!.setBackgroundDrawable(
@@ -40,16 +41,21 @@ class DialogFragment(private val onCallback:OnCallback) : androidx.fragment.app.
         super.onViewCreated(view, savedInstanceState)
 
         bindingDialog.btnRetry.setOnClickListener{
+            findNavController().previousBackStackEntry!!.savedStateHandle["retry"] = true
+            findNavController().navigate(DialogFragmentDirections.actionDialogFragmentToSplashFragment())
             dialog!!.dismiss()
-            onCallback.onRetry()
-
         }
         bindingDialog.btnExitApp.setOnClickListener{
             dialog!!.dismiss()
-            onCallback.exitApp()
+            requireActivity().finish()
         }
 
-        bindingDialog.txtTitleNotConnect.text = arguments?.getString("id")
+        bindingDialog.txtTitleNotConnect.text = args.tittle
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        println("ON DESTROY DIALOG")
     }
 }

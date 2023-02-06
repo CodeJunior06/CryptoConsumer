@@ -18,6 +18,11 @@
         android:id="@+id/informationFragment"
         android:name="com.codejunior.cryptoconsumer.view.fragments.InformationFragment"
         android:label="fragment_information"
-        tools:layout="@layout/fragment_information" />
+        tools:layout="@layout/fragment_information" >
+        <argument
+            android:name="crypto"
+            app:argType="com.codejunior.cryptoconsumer.network.room.entities.CryptoEntity"
+            />
+    </fragment>
 
 </navigation>

@@ -8,6 +8,8 @@ import android.os.Build
 import android.util.Base64
 import android.util.Log
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
+import com.codejunior.cryptoconsumer.R
 import java.io.ByteArrayOutputStream
 
 class Defines {
@@ -44,6 +46,16 @@ class Defines {
                 }
             }
             return false
+        }
+
+        fun getColor(number:String,context: Context) :Int {
+
+            val numero = number.toDouble()
+
+            if(numero<0){
+                return ContextCompat.getColor(context, R.color.red)
+            }
+            return ContextCompat.getColor(context, R.color.green)
         }
     }
 }

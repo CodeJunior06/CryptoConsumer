@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codejunior.cryptoconsumer.databinding.FragmentCryptoBinding
+import com.codejunior.cryptoconsumer.network.room.entities.CryptoEntity
 import com.codejunior.cryptoconsumer.view.adapter.CryptoAdapter
 import com.codejunior.cryptoconsumer.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,7 +50,11 @@ class CryptoFragment : Fragment() {
                     return@collect
                 }
                 _bindingCrypto.rvLstCrypto.layoutManager = LinearLayoutManager(context);
-                _bindingCrypto.rvLstCrypto.adapter = CryptoAdapter(it)
+                _bindingCrypto.rvLstCrypto.adapter = CryptoAdapter(object : CryptoAdapter.OnResponse {
+                    override fun onItemSelected(cryptoModel: CryptoEntity) {
+                        findNavController().navigate(CryptoFragmentDirections.actionCryptoFragmentToInformationFragment(cryptoModel))
+                    }
+                }, it)
             }
 
         }

@@ -30,7 +30,9 @@ class SplashModel @Inject constructor(
     private val map = HashMap<String, String>()
     suspend fun invokeListCrypto(): Array<ResponseSealed> {
 
-        kotlin.runCatching { retrofitConsumer.getListCryptoAPI() }
+        kotlin.runCatching {
+            retrofitConsumer.getListCryptoAPI()
+        }
             .onSuccess {
                 if (it.code() == 200) {
                     model = it.body()!!
@@ -42,7 +44,7 @@ class SplashModel @Inject constructor(
                 }
             }
             .onFailure {
-                msg = arrayOf(ResponseSealed.MessageDialog("ERROR DE CONEXION"))
+                msg = arrayOf(ResponseSealed.MessageDialog("ERROR PRIMERO"))
                 return@onFailure
             }
         return msg
@@ -62,7 +64,10 @@ class SplashModel @Inject constructor(
                     )
                 }
             }
-            .onFailure { }
+            .onFailure {
+
+                msg = arrayOf(ResponseSealed.MessageDialog("ERROR DE CONEXION"))
+            }
         return msg
     }
 
@@ -95,6 +100,7 @@ class SplashModel @Inject constructor(
                 .onFailure {
                     println(it.message)
                     println(it.printStackTrace())
+                   msg = arrayOf(ResponseSealed.MessageDialog("ERROR DE CONEXION"))
                 }
         }
 
@@ -136,32 +142,67 @@ class SplashModel @Inject constructor(
 
     suspend fun isConnectionAndVerifiedRoom(isSplash:Boolean): Array<ResponseSealed> {
         if (Defines.isConnected(context)) {
-            return arrayOf(ResponseSealed.FirstPetition)
-        }
-        withContext(Dispatchers.IO) {
+            msg = arrayOf(ResponseSealed.FirstPetition)
+        }else {
+            withContext(Dispatchers.IO) {
 
-            kotlin.runCatching {
-              dataBase.getCryptoDao().existData() == 0
-            }.onSuccess {
-                value ->
-                msg = if (value){
-                    arrayOf(ResponseSealed.MessageDialog("SIN ACCESO A INTERNET"))
-                }else{
-                    if(isSplash){
-                        arrayOf(ResponseSealed.ChangeMessageBackground("TIENES DATOS EN LA BASE DE DATOS ..."),ResponseSealed.NavigationInitFragment)
-                    }else{
-                        arrayOf(ResponseSealed.GetAllDataRoom)
+                kotlin.runCatching {
+                    dataBase.getCryptoDao().existData() == 0
+                }.onSuccess { value ->
+                    msg = if (value) {
+                        arrayOf(ResponseSealed.MessageDialog("SIN ACCESO A INTERNET"))
+                    } else {
+                        if (isSplash) {
+                            arrayOf(
+                                ResponseSealed.ChangeMessageBackground("TIENES DATOS EN LA BASE DE DATOS ..."),
+                                ResponseSealed.NavigationInitFragment
+                            )
+                        } else {
+                            arrayOf(ResponseSealed.GetAllDataRoom)
+                        }
+
                     }
 
+                }.onFailure {
+
+                    msg = arrayOf(ResponseSealed.MessageDialog("Error Data Base"))
                 }
-
-            }.onFailure {
-
-                msg  = arrayOf(ResponseSealed.MessageDialog("Error Data Base"))
             }
-
-
         }
         return msg
     }
+
+
+    suspend fun isConnectionAndVerifiedRoom2(isSplash:Boolean): ResponseSealed {
+        if (Defines.isConnected(context)) {
+            msg = arrayOf(ResponseSealed.FirstPetition)
+        }else {
+            withContext(Dispatchers.IO) {
+
+                kotlin.runCatching {
+                    dataBase.getCryptoDao().existData() == 0
+                }.onSuccess { value ->
+                    msg = if (value) {
+                        arrayOf(ResponseSealed.MessageDialog("SIN ACCESO A INTERNET"))
+                    } else {
+                        if (isSplash) {
+                            arrayOf(
+                                ResponseSealed.ChangeMessageBackground("TIENES DATOS EN LA BASE DE DATOS ..."),
+                                ResponseSealed.NavigationInitFragment
+                            )
+                        } else {
+                            arrayOf(ResponseSealed.GetAllDataRoom)
+                        }
+
+                    }
+
+                }.onFailure {
+
+                    msg = arrayOf(ResponseSealed.MessageDialog("Error Data Base"))
+                }
+            }
+        }
+        return ResponseSealed.GetAllDataRoom
+    }
+
 }
