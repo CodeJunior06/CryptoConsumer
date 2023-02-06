@@ -1,4 +1,4 @@
-package com.codejunior.cryptoconsumer.network.model.data
+package com.codejunior.cryptoconsumer.network.retrofit.model.data
 import com.google.gson.annotations.SerializedName
 
 data class ResponseCrypto(

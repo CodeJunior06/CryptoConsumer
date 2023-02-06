@@ -29,6 +29,16 @@
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true"
             />
+        <action
+            android:id="@+id/action_splashFragment_to_dialogFragment"
+            app:destination="@id/dialogFragment" />
+
+
     </fragment>
     <include app:graph="@navigation/main" />
+    <dialog
+        android:id="@+id/dialogFragment"
+        android:name="com.codejunior.cryptoconsumer.view.dialog.DialogFragment"
+        android:label="fragment_dialog"
+        tools:layout="@layout/fragment_dialog" />
 </navigation>

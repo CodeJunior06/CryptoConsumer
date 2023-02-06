@@ -1,4 +1,4 @@
-package com.codejunior.cryptoconsumer.network.model.data
+package com.codejunior.cryptoconsumer.network.retrofit.model.data
 
 import com.google.gson.annotations.SerializedName
 
@@ -23,7 +23,7 @@ data class Crypto (
     val tags: List<String>? = null,
 
     @SerializedName("max_supply")
-    val maxSupply: Long? = null,
+    val maxSupply: String? = null,
 
     @SerializedName("circulating_supply")
     val circulatingSupply: String? = null,

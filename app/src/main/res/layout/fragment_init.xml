@@ -26,7 +26,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="W E L C O M E    T O"
+                android:text="WELCOME TO"
                 android:textColor="@color/white"
                 android:textSize="33sp"
                 android:textStyle="bold" />
@@ -34,7 +34,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="C R Y P T O    W A L L E T !"
+                android:text="CRYPTO WALLET!"
                 android:textColor="@color/white"
                 android:textSize="30sp"
                 android:textStyle="bold" />

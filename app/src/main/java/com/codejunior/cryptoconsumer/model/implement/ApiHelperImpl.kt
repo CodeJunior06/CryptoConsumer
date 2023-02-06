@@ -1,8 +1,8 @@
 package com.codejunior.cryptoconsumer.model.implement
 
-import com.codejunior.cryptoconsumer.network.ApiService
-import com.codejunior.cryptoconsumer.network.model.data.ResponseCrypto
-import com.codejunior.cryptoconsumer.network.model.information.ResponseDescription
+import com.codejunior.cryptoconsumer.network.retrofit.ApiService
+import com.codejunior.cryptoconsumer.network.retrofit.model.data.ResponseCrypto
+import com.codejunior.cryptoconsumer.network.retrofit.model.information.ResponseDescription
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response

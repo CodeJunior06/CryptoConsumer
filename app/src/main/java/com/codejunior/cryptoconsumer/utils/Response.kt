@@ -1,8 +1,21 @@
 package com.codejunior.cryptoconsumer.utils
 
-sealed class ResponseSealed(val message:String){
+import com.codejunior.cryptoconsumer.network.room.entities.CryptoEntity
 
-    data class Message(private val msg:String):ResponseSealed(msg)
+sealed class ResponseSealed(){
+
+    data class MessageDialog(val message:String):ResponseSealed()
+    data class ChangeMessageBackground(val message:String):ResponseSealed()
+    object FirstPetition:ResponseSealed()
+    object SecondPetition:ResponseSealed()
+
+    object GetBase64:ResponseSealed()
+    object SaveDataRoom:ResponseSealed()
+    object NavigationInitFragment:ResponseSealed()
+    object GetAllDataRoom:ResponseSealed()
+    data class FillRecycler(val lst:List<CryptoEntity>) : ResponseSealed()
+
+
 }
 
 

@@ -69,16 +69,15 @@
                      android:textStyle="bold"
                      android:textColor="@color/white"
                      android:textAlignment="viewEnd"
-                     android:id="@+id/porcentageCrypto"
+                     android:id="@+id/valueCrypto"
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
                      android:text="$ 19,881.10"/>
 
                  <TextView
-
+                     android:id="@+id/porcentageCrypto"
                      android:textSize="15sp"
                      android:textColor="@color/red"
-                     android:id="@+id/valueCrypto"
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
                      android:text="- 1,97%"
@@ -93,6 +92,7 @@
         </androidx.cardview.widget.CardView>
      </LinearLayout>
     <ImageView
+        android:id="@+id/imgCrypto"
         android:layout_marginStart="18dp"
         android:layout_width="30dp"
         android:layout_marginTop="15dp"

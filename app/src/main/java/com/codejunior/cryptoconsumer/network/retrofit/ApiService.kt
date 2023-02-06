@@ -1,7 +1,7 @@
-package com.codejunior.cryptoconsumer.network
+package com.codejunior.cryptoconsumer.network.retrofit
 
-import com.codejunior.cryptoconsumer.network.model.data.ResponseCrypto
-import com.codejunior.cryptoconsumer.network.model.information.ResponseDescription
+import com.codejunior.cryptoconsumer.network.retrofit.model.data.ResponseCrypto
+import com.codejunior.cryptoconsumer.network.retrofit.model.information.ResponseDescription
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

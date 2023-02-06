@@ -1,28 +1,28 @@
 package com.codejunior.cryptoconsumer.view.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.codejunior.cryptoconsumer.databinding.FragmentSplashBinding
+import com.codejunior.cryptoconsumer.view.dialog.DialogFragment
 import com.codejunior.cryptoconsumer.viewmodel.SplashViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class SplashFragment : Fragment() {
+class SplashFragment : Fragment() ,DialogFragment.OnCallback {
 
-    private lateinit var binding:FragmentSplashBinding
-    private val _viewModelSplash:SplashViewModel by activityViewModels { defaultViewModelProviderFactory }
+    private lateinit var binding: FragmentSplashBinding
+    private val _viewModelSplash: SplashViewModel by activityViewModels { defaultViewModelProviderFactory }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-       binding = FragmentSplashBinding.inflate(inflater,container,false)
+        binding = FragmentSplashBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -38,10 +38,35 @@ class SplashFragment : Fragment() {
     private fun observerMessage() {
         lifecycleScope.launchWhenCreated {
 
-            _viewModelSplash.messageState.collect{
-                if(it.isNotEmpty()) Toast.makeText(context,it,Toast.LENGTH_LONG).show()
+            _viewModelSplash.messageStateDialog.collect {
+                if(it.isNotEmpty()){
+                val args = Bundle()
+                args.putString("title",it)
+                DialogFragment(this@SplashFragment).apply { arguments = args}.show(requireActivity().supportFragmentManager,"")
+                }
             }
         }
 
+        lifecycleScope.launchWhenCreated {
+            _viewModelSplash.messageStateSuccess.collect {
+                binding.textView.text = it
+            }
+        }
+
+
+        lifecycleScope.launchWhenCreated {
+            _viewModelSplash.navigation.collect {
+                if(it) findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToInitFragment())
+            }
+        }
+
+    }
+
+    override fun onRetry() {
+        _viewModelSplash.invoke()
+    }
+
+    override fun exitApp() {
+        requireActivity().finish()
     }
 }

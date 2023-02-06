@@ -2,11 +2,12 @@ package com.codejunior.cryptoconsumer.di
 
 import com.codejunior.cryptoconsumer.model.implement.ApiHelper
 import com.codejunior.cryptoconsumer.model.implement.ApiHelperImpl
-import com.codejunior.cryptoconsumer.network.ApiService
+import com.codejunior.cryptoconsumer.network.retrofit.ApiService
 import com.codejunior.cryptoconsumer.network.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.scopes.ActivityScoped
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -22,6 +23,7 @@ import javax.inject.Singleton
 object RetrofitProvider {
 
     @Provides
+    @Singleton
     fun provideBaseUrl() :String = Constants.BASE_URL
 
     @Singleton
