@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.codejunior.cryptoconsumer.R
 import com.codejunior.cryptoconsumer.databinding.FragmentSplashBinding
 import com.codejunior.cryptoconsumer.viewmodel.SplashViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -51,11 +52,8 @@ class SplashFragment : Fragment() {
 
             _viewModelSplash.messageStateDialog.collect {
                 if (it.isNotEmpty()) {
-                    findNavController().navigate(
-                        SplashFragmentDirections.actionSplashFragmentToDialogFragment(
-                            it
-                        )
-                    )
+                    findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToDialogFragment(it))
+
                 }
             }
         }

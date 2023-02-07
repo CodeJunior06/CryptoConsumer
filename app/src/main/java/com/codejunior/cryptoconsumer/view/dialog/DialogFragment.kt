@@ -41,9 +41,9 @@ class DialogFragment() : androidx.fragment.app.DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         bindingDialog.btnRetry.setOnClickListener{
-            findNavController().previousBackStackEntry!!.savedStateHandle["retry"] = true
-            findNavController().navigate(DialogFragmentDirections.actionDialogFragmentToSplashFragment())
             dialog!!.dismiss()
+            dialog!!.cancel()
+            findNavController().previousBackStackEntry!!.savedStateHandle["retry"] = true
         }
         bindingDialog.btnExitApp.setOnClickListener{
             dialog!!.dismiss()

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.codejunior.cryptoconsumer.databinding.PercentAdapterBinding
 import com.codejunior.cryptoconsumer.network.retrofit.model.information.Percent
+import com.codejunior.cryptoconsumer.utils.Defines
 
 class PercentAdapter(private val list:List<Percent>) : RecyclerView.Adapter<PercentAdapter.HolderItem>() {
 
@@ -18,7 +19,9 @@ class PercentAdapter(private val list:List<Percent>) : RecyclerView.Adapter<Perc
         private var binding = PercentAdapterBinding.bind(view)
         fun render(model: Percent) {
             binding.title.text = model.tittle
-            binding.percent.text = model.percent
+            binding.percent.text = model.percent+" %"
+
+            binding.percent.setTextColor(Defines.getColor(model.percent, context = view.context))
         }
 
     }

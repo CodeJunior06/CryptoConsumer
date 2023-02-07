@@ -3,15 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E3CB30"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.fragments.SplashFragment">
 
    <androidx.constraintlayout.widget.ConstraintLayout
        android:layout_width="match_parent"
-       android:layout_height="match_parent">
+       android:layout_height="match_parent"
+       android:background="#E3CB30"
+       >
 
       <ImageView
+          app:strokeColor="@null"
           android:id="@+id/imageView"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"

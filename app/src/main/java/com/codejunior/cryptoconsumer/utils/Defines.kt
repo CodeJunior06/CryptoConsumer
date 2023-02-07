@@ -57,5 +57,11 @@ class Defines {
             }
             return ContextCompat.getColor(context, R.color.green)
         }
+
+        fun toConverter(price:String) :String{
+           val lst = price.split(".")
+            return lst[0]+"."+lst[1].substring(0,5)
+        }
+
     }
 }

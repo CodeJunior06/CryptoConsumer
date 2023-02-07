@@ -28,10 +28,9 @@ class CryptoAdapter(private val item:OnResponse,private val arrayCrypto:List<Cry
             binding.nameCrypto.text = cryptoModel.name
             binding.symbolCrypto.text = cryptoModel.symbol
             binding.valueCrypto.text = "$ ${cryptoModel.price}"
-            binding.porcentageCrypto.text = cryptoModel.percent1H
-            ContextCompat.getColor(view.context,R.color.red)
+            binding.porcentageCrypto.text = cryptoModel.percent1H +" %"
             binding.porcentageCrypto.setTextColor(Defines.getColor(cryptoModel.percent1H!!,view.context) )
-            val imageByteArray: ByteArray = Base64.decode(cryptoModel.logoBase64, Base64.NO_WRAP)
+            val imageByteArray: ByteArray = Base64.decode(cryptoModel.logoBase64, Base64.DEFAULT)
 
             Glide.with(binding.imgCrypto.context).load(imageByteArray)
                 .placeholder(R.drawable.bit).error(R.drawable.bit).into(binding.imgCrypto)

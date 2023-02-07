@@ -8,7 +8,6 @@ import com.codejunior.cryptoconsumer.model.implement.ApiHelperImpl
 import com.codejunior.cryptoconsumer.network.retrofit.model.data.ResponseCrypto
 import com.codejunior.cryptoconsumer.network.retrofit.model.information.ResponseDescription
 import com.codejunior.cryptoconsumer.network.room.DataBaseRoom
-import com.codejunior.cryptoconsumer.network.room.entities.CryptoEntity
 import com.codejunior.cryptoconsumer.utils.Defines
 import com.codejunior.cryptoconsumer.utils.ResponseSealed
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -100,7 +99,7 @@ class SplashModel @Inject constructor(
                 .onFailure {
                     println(it.message)
                     println(it.printStackTrace())
-                   msg = arrayOf(ResponseSealed.MessageDialog("ERROR DE CONEXION"))
+                    msg = arrayOf(ResponseSealed.MessageDialog("ERROR DE CONEXION"))
                 }
         }
 
@@ -140,10 +139,10 @@ class SplashModel @Inject constructor(
         return msg
     }
 
-    suspend fun isConnectionAndVerifiedRoom(isSplash:Boolean): Array<ResponseSealed> {
+    suspend fun isConnectionAndVerifiedRoom(isSplash: Boolean): Array<ResponseSealed> {
         if (Defines.isConnected(context)) {
             msg = arrayOf(ResponseSealed.FirstPetition)
-        }else {
+        } else {
             withContext(Dispatchers.IO) {
 
                 kotlin.runCatching {
@@ -170,39 +169,6 @@ class SplashModel @Inject constructor(
             }
         }
         return msg
-    }
-
-
-    suspend fun isConnectionAndVerifiedRoom2(isSplash:Boolean): ResponseSealed {
-        if (Defines.isConnected(context)) {
-            msg = arrayOf(ResponseSealed.FirstPetition)
-        }else {
-            withContext(Dispatchers.IO) {
-
-                kotlin.runCatching {
-                    dataBase.getCryptoDao().existData() == 0
-                }.onSuccess { value ->
-                    msg = if (value) {
-                        arrayOf(ResponseSealed.MessageDialog("SIN ACCESO A INTERNET"))
-                    } else {
-                        if (isSplash) {
-                            arrayOf(
-                                ResponseSealed.ChangeMessageBackground("TIENES DATOS EN LA BASE DE DATOS ..."),
-                                ResponseSealed.NavigationInitFragment
-                            )
-                        } else {
-                            arrayOf(ResponseSealed.GetAllDataRoom)
-                        }
-
-                    }
-
-                }.onFailure {
-
-                    msg = arrayOf(ResponseSealed.MessageDialog("Error Data Base"))
-                }
-            }
-        }
-        return ResponseSealed.GetAllDataRoom
     }
 
 }
