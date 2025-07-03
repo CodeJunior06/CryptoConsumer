@@ -5,5 +5,5 @@ data class ResponseCrypto(
     @SerializedName("status")
     val status: Status,
     @SerializedName("data")
-    val data: List<Crypto>
+    val data: List<CryptoDto>
 )

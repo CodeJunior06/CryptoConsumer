@@ -2,14 +2,14 @@ package com.codejunior.cryptoconsumer.network.retrofit.model.data
 
 import com.google.gson.annotations.SerializedName
 
-data class Crypto (
+data class CryptoDto (
 
     @SerializedName("id")
-    val id: Long? = null,
+    val id: Long ,
     @SerializedName("name")
-    val name: String? = null,
+    val name: String,
     @SerializedName("symbol")
-    val symbol: String? = null,
+    val symbol: String,
     @SerializedName("slug")
     val slug: String? = null,
 
@@ -17,19 +17,22 @@ data class Crypto (
     val numMarketPairs: Long? = null,
 
     @SerializedName("date_added")
-    val dateAdded: String? = null,
+    val dateAdded: String,
 
     @SerializedName("tags")
     val tags: List<String>? = null,
 
     @SerializedName("max_supply")
-    val maxSupply: String? = null,
+    val maxSupply: Long ,
 
     @SerializedName("circulating_supply")
-    val circulatingSupply: String? = null,
+    val circulatingSupply: String ,
 
     @SerializedName("total_supply")
-    val totalSupply: String? = null,
+    val totalSupply: String?,
+
+    @SerializedName("infinite_supply")
+    val infiniteSupply: Boolean ,
 
     @SerializedName("platform")
     val platform: Platform? = null,

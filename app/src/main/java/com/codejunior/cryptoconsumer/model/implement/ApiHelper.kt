@@ -1,10 +1,8 @@
 package com.codejunior.cryptoconsumer.model.implement
 
-import com.codejunior.cryptoconsumer.network.retrofit.model.data.ResponseCrypto
-import com.codejunior.cryptoconsumer.network.retrofit.model.information.ResponseDescription
-import retrofit2.Response
+import com.codejunior.cryptoconsumer.domain.model.Crypto
+import com.codejunior.cryptoconsumer.network.ResponseGeneric
 
-interface ApiHelper {
-    suspend fun  getListCryptoAPI() : Response<ResponseCrypto>
-    suspend fun  getCryptoInformationAPI(condition:String) : Response<ResponseDescription>
+interface ApiHelper{
+    suspend fun fetchCrypto() : ResponseGeneric<List<Crypto>>
 }

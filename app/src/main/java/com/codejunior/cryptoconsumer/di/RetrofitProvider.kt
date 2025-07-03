@@ -1,13 +1,17 @@
 package com.codejunior.cryptoconsumer.di
 
+import android.content.Context
+import androidx.room.RoomDatabase
 import com.codejunior.cryptoconsumer.model.implement.ApiHelper
-import com.codejunior.cryptoconsumer.model.implement.ApiHelperImpl
+import com.codejunior.cryptoconsumer.model.implement.ApiServiceImpl
 import com.codejunior.cryptoconsumer.network.retrofit.ApiService
 import com.codejunior.cryptoconsumer.network.Constants
+import com.codejunior.cryptoconsumer.network.room.DataBaseRoom
+import com.codejunior.cryptoconsumer.network.room.dao.CryptoDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.scopes.ActivityScoped
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -68,6 +72,6 @@ object RetrofitProvider {
 
     @Provides
     @Singleton
-    fun provideApiHelper(apiHelper: ApiService): ApiHelper = ApiHelperImpl(apiHelper)
+    fun provideApiHelper(@ApplicationContext context: Context,service: ApiService, dao: CryptoDao) : ApiHelper = ApiServiceImpl(context,service, dao)
 
 }

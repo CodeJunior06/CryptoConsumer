@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.codejunior.cryptoconsumer.network.room.dao.CryptoDao
 import com.codejunior.cryptoconsumer.network.room.entities.CryptoEntity
 
-@Database([CryptoEntity::class], version = 1, exportSchema = false)
+@Database([CryptoEntity::class], version = 4, exportSchema = false)
 abstract class DataBaseRoom : RoomDatabase() {
 
     abstract fun getCryptoDao(): CryptoDao

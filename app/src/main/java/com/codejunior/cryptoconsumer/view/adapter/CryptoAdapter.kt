@@ -4,14 +4,13 @@ import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.codejunior.cryptoconsumer.R
 import com.codejunior.cryptoconsumer.databinding.CryptoAdapterBinding
 import com.codejunior.cryptoconsumer.network.room.entities.CryptoEntity
-import com.codejunior.cryptoconsumer.utils.Defines
+import com.codejunior.cryptoconsumer.utils.Utils
 
 class CryptoAdapter(private val item:OnResponse,private val arrayCrypto:List<CryptoEntity>) : RecyclerView.Adapter<CryptoAdapter.CryptoHolder>() {
 
@@ -28,9 +27,9 @@ class CryptoAdapter(private val item:OnResponse,private val arrayCrypto:List<Cry
             binding.nameCrypto.text = cryptoModel.name
             binding.symbolCrypto.text = cryptoModel.symbol
             binding.valueCrypto.text = "$ ${cryptoModel.price}"
-            binding.porcentageCrypto.text = cryptoModel.percent1H +" %"
-            binding.porcentageCrypto.setTextColor(Defines.getColor(cryptoModel.percent1H!!,view.context) )
-            val imageByteArray: ByteArray = Base64.decode(cryptoModel.logoBase64, Base64.DEFAULT)
+            binding.porcentageCrypto.text = "${cryptoModel.percent1H} %"
+            binding.porcentageCrypto.setTextColor(Utils.getColor(cryptoModel.percent1H!!.toString(),view.context) )
+            val imageByteArray: ByteArray = Base64.decode(cryptoModel.logoPath, Base64.DEFAULT)
 
             Glide.with(binding.imgCrypto.context).load(imageByteArray)
                 .placeholder(R.drawable.bit).error(R.drawable.bit).into(binding.imgCrypto)

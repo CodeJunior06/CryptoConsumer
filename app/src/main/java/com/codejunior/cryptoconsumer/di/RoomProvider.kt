@@ -21,7 +21,7 @@ object RoomProvider {
         context,
         DataBaseRoom::class.java,
         Constants.NAME_DATA_BASE
-    ).build()
+    ).fallbackToDestructiveMigration().build()
 
     @Singleton
     @Provides
